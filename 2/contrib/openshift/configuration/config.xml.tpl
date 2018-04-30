@@ -3,7 +3,7 @@
   <disabledAdministrativeMonitors>
     ${ADMIN_MON_CONFIG}
   </disabledAdministrativeMonitors>
-  <version>2.89.2</version>
+  <version>2.107.2</version>
   <numExecutors>5</numExecutors>
   <mode>NORMAL</mode>
   <useSecurity>true</useSecurity>
