@@ -35,7 +35,8 @@ RUN curl https://pkg.jenkins.io/redhat-stable/jenkins.repo -o /etc/yum.repos.d/j
     rpm --import https://pkg.jenkins.io/redhat-stable/jenkins-ci.org.key && \
     ln -s /usr/lib/jenkins /usr/lib64/jenkins && \
     x86_EXTRA_RPMS=$(if [ "$(uname -m)" == "x86_64" ]; then echo -n java-1.8.0-openjdk.i686 java-1.8.0-openjdk-devel.i686 ; fi) && \
-    INSTALL_PKGS="dejavu-sans-fonts rsync gettext git tar zip unzip openssl bzip2 java-1.8.0-openjdk java-1.8.0-openjdk-devel jenkins" && \
+    yum-config-manager --enable rhel-7-server-ose-3.6-rpms && \
+    INSTALL_PKGS="dejavu-sans-fonts rsync gettext git tar zip unzip openssl bzip2 java-1.8.0-openjdk java-1.8.0-openjdk-devel atomic-openshift-clients jenkins" && \
     yum -y --setopt=tsflags=nodocs install $INSTALL_PKGS $x86_EXTRA_RPMS && \
     rpm -V $INSTALL_PKGS $x86_EXTRA_RPMS && \
     yum clean all && \
