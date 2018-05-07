@@ -1,13 +1,13 @@
-openshift-pipeline:1.0.54
-openshift-login:1.0.8
-openshift-client:1.0.12
+openshift-pipeline:latest
+openshift-login:latest
+openshift-client:latest
 
 
 # kubernetes plugin - https://wiki.jenkins-ci.org/display/JENKINS/Kubernetes+Plugin
-kubernetes:1.2
+kubernetes:latest
 
 # fabric8 openshift sync
-openshift-sync:1.0.18
+openshift-sync:latest
 
 # explicitly pull in plugins previously pulled in by dependencies because of
 # security advisories  ...exclude plugins from
@@ -24,44 +24,44 @@ openshift-sync:1.0.18
 # processed sec adv https://jenkins.io/security/advisory/2018-03-26/
 # processed sec adv https://jenkins.io/security/advisory/2018-04-16/
 #
-htmlpublisher:1.16
-mailer:1.21
-config-file-provider:2.17
-docker-commons:1.11
-job-dsl:1.68
-parameterized-trigger:2.35.2
-pipeline-build-step:2.7
-pipeline-input-step:2.8
-script-security:1.41
-credentials-binding:1.15
-junit:1.24
-workflow-durable-task-step:2.18
-workflow-support:2.18
-git:3.8.0
-mercurial:2.3
-subversion:2.10.3
+htmlpublisher:latest
+mailer:latest
+config-file-provider:latest
+docker-commons:latest
+job-dsl:latest
+parameterized-trigger:latest
+pipeline-build-step:latest
+pipeline-input-step:latest
+script-security:latest
+credentials-binding:latest
+junit:latest
+workflow-durable-task-step:latest
+workflow-support:latest
+git:latest
+mercurial:latest
+subversion:latest
 
 # Legacy stuff
-mapdb-api:1.0.9.0
+mapdb-api:latest
 
 # remote loader https://wiki.jenkins-ci.org/display/JENKINS/Pipeline+Remote+Loader+Plugin
-workflow-remote-loader:1.4
+workflow-remote-loader:latest
 
-matrix-project:1.12
-ssh-credentials:1.13
+matrix-project:latest
+ssh-credentials:latest
 
 # Pipeline Utility Steps Plugin - https://wiki.jenkins-ci.org/display/JENKINS/Pipeline+Utility+Steps+Plugin
-pipeline-utility-steps:1.5.1
+pipeline-utility-steps:latest
 
 # some plugins helpful for global shared libs were broken out of workflow aggregator
-pipeline-github-lib:1.0
-github-organization-folder:1.6
+pipeline-github-lib:latest
+github-organization-folder:latest
 
 # Jenkins v2 specific
-matrix-auth:2.2
-blueocean:1.4.1
+matrix-auth:latest
+blueocean:latest
 
 # Pipeline plugin - https://wiki.jenkins-ci.org/display/JENKINS/Pipeline+Plugin
 # 2.5 now includes pipeline-model-definition (declaritive pipeline)
 # 2.4 brought in pipeline-milestone-step
-workflow-aggregator:2.5
+workflow-aggregator:latest

@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/rhscl/s2i-core-rhel7
+FROM registry.access.redhat.com/rhel7
 
 # Jenkins image for OpenShift
 #
