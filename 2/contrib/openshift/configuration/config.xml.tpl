@@ -44,13 +44,14 @@
   <views>
     <hudson.model.AllView>
       <owner class="hudson" reference="../../.."/>
-      <name>all</name>
+      <name>All</name>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
       <properties/>
     </hudson.model.AllView>
+    ${CUSTOM_VIEWS_CONFIG}
   </views>
-  <primaryView>all</primaryView>
+  <primaryView>All</primaryView>
   <slaveAgentPort>${JNLP_PORT}</slaveAgentPort>
   <disabledAgentProtocols>
     <string>JNLP-connect</string>
