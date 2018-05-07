@@ -40,6 +40,7 @@ function create_jenkins_config_xml() {
       fi
       export ADMIN_MON_CONFIG=$(generate_administrative_monitors_config)
       echo "Generating administrative monitor configuration (${image_config_path}.tpl) ..."
+      export CUSTOM_VIEWS_CONFIG=$(generate_custom_views_config)
       envsubst < "${image_config_path}.tpl" > "${image_config_path}"
     fi
   fi
@@ -52,6 +53,14 @@ function generate_administrative_monitors_config() {
         <string>jenkins.security.UpdateSiteWarningsMonitor</string>
       '
       return
+  fi
+  echo ""
+}
+
+function generate_custom_views_config() {
+  if [ -f "${image_config_dir}/custom_views.xml.tpl" ]; then
+    echo "$(envsubst < "${image_config_dir}/custom_views.xml.tpl")"
+    return
   fi
   echo ""
 }

@@ -59,6 +59,8 @@ export JENKINS_PASSWORD KUBERNETES_SERVICE_HOST KUBERNETES_SERVICE_PORT
 export K8S_PLUGIN_POD_TEMPLATES=""
 export PATH=$PATH:${JENKINS_HOME}/.local/bin
 
+export K8S_CONTAINER_CAP=${K8S_CONTAINER_CAP:-10}
+
 function has_service_account() {
   [ -f "${AUTH_TOKEN}" ]
 }
@@ -151,7 +153,7 @@ function generate_kubernetes_config() {
       <jenkinsUrl>http://${JENKINS_SERVICE_HOST}:${JENKINS_SERVICE_PORT}</jenkinsUrl>
       <jenkinsTunnel>${JNLP_HOST}:${JNLP_PORT}</jenkinsTunnel>
       <credentialsId>1a12dfa4-7fc5-47a7-aa17-cc56572a41c7</credentialsId>
-      <containerCap>10</containerCap>
+      <containerCap>${K8S_CONTAINER_CAP}</containerCap>
       <retentionTimeout>5</retentionTimeout>
     </org.csanchez.jenkins.plugins.kubernetes.KubernetesCloud>
     "
