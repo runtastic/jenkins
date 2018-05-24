@@ -72,3 +72,8 @@ blueocean:latest
 # 2.5 now includes pipeline-model-definition (declaritive pipeline)
 # 2.4 brought in pipeline-milestone-step
 workflow-aggregator:latest
+
+# Bitbucket Branch Source plugin - https://plugins.jenkins.io/cloudbees-bitbucket-branch-source
+# blueocean indirectly depends on a older version which does not allow using a
+# Jenkinsfile inside a subdirectory.
+cloudbees-bitbucket-branch-source:latest
