@@ -1,4 +1,4 @@
-FROM openshift/origin
+FROM registry.access.redhat.com/rhscl/s2i-core-rhel7
 
 # Jenkins image for OpenShift
 #
@@ -33,15 +33,13 @@ EXPOSE 8080 50000
 
 RUN curl https://pkg.jenkins.io/redhat-stable/jenkins.repo -o /etc/yum.repos.d/jenkins.repo && \
     rpm --import https://pkg.jenkins.io/redhat-stable/jenkins-ci.org.key && \
-    yum install -y centos-release-scl-rh && \
-    curl https://copr.fedorainfracloud.org/coprs/alsadi/dumb-init/repo/epel-7/alsadi-dumb-init-epel-7.repo -o /etc/yum.repos.d/alsadi-dumb-init-epel-7.repo && \
+    ln -s /usr/lib/jenkins /usr/lib64/jenkins && \
     x86_EXTRA_RPMS=$(if [ "$(uname -m)" == "x86_64" ]; then echo -n java-1.8.0-openjdk.i686 java-1.8.0-openjdk-devel.i686 ; fi) && \
-    INSTALL_PKGS="dejavu-sans-fonts rsync gettext git tar zip unzip openssl bzip2 dumb-init java-1.8.0-openjdk jenkins-2.107.3-1.1" && \
+    INSTALL_PKGS="dejavu-sans-fonts rsync gettext git tar zip unzip openssl bzip2 java-1.8.0-openjdk java-1.8.0-openjdk-devel jenkins" && \
     yum -y --setopt=tsflags=nodocs install $INSTALL_PKGS $x86_EXTRA_RPMS && \
-    # have temporarily removed the validation for java to work around known problem fixed in fedora; jupierce and gmontero are working with
-    # the requisit folks to get that addressed ... will switch back to rpm -V $INSTALL_PKGS when that occurs
-    rpm -V  dejavu-sans-fonts rsync gettext git tar zip unzip openssl bzip2 dumb-init jenkins-2.107.3-1.1 && \
-    yum clean all  && \
+    rpm -V $INSTALL_PKGS $x86_EXTRA_RPMS && \
+    yum clean all && \
+    rm -rf /var/cache/yum && \
     localedef -f UTF-8 -i en_US en_US.UTF-8
 
 COPY ./contrib/openshift /opt/openshift
@@ -61,7 +59,6 @@ RUN /usr/local/bin/install-plugins.sh /opt/openshift/base-plugins.txt && \
     chmod 775 /usr/bin && \
     chmod 775 /usr/lib/jvm-exports && \
     chmod 775 /usr/share/man/man1 && \
-    chmod 775 /var/lib/origin && \
     unlink /usr/bin/java && \
     unlink /usr/bin/jjs && \
     unlink /usr/bin/keytool && \
@@ -94,5 +91,5 @@ RUN /usr/local/bin/install-plugins.sh /opt/openshift/base-plugins.txt && \
 VOLUME ["/var/lib/jenkins"]
 
 USER 1001
-ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+
 CMD ["/usr/libexec/s2i/run"]
