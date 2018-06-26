@@ -48,6 +48,10 @@ COPY ./contrib/jenkins /usr/local/bin
 ADD ./contrib/s2i /usr/libexec/s2i
 ADD release.version /tmp/release.version
 
+# install svcat binary
+RUN curl -o /usr/local/bin/svcat https://download.svcat.sh/cli/v0.1.22/linux/amd64/svcat && \
+    chmod a+x /usr/local/bin/svcat
+
 RUN /usr/local/bin/install-plugins.sh /opt/openshift/base-plugins.txt && \
     # need to create <plugin>.pinned files when upgrading "core" plugins like credentials or subversion that are bundled with the jenkins server
     # Currently jenkins v2 does not embed any plugins, but for reference:
